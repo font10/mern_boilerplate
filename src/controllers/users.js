@@ -16,7 +16,7 @@ export const getItem = (req, res) => {
 
 export const createItem = async(req, res) => {
   try {
-    const { name, age, email } = new User(req.body)
+    const newUser = new User(req.body)
 
     const userAdded = await newUser.save();
 
