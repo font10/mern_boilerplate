@@ -1,7 +1,7 @@
 import { httpError } from "../helpers/handleError.js"
 import User from '../models/users.js'
 
-export const getItems = async(req, res) => {
+export const getUsers = async(req, res) => {
   try {
     const newUser = await User.find({})
     return res.status(201).json({ status: 'OK', data: newUser })
@@ -10,11 +10,11 @@ export const getItems = async(req, res) => {
   }
 }
 
-export const getItem = (req, res) => {
+export const getUser = (req, res) => {
 
 }
 
-export const createItem = async(req, res) => {
+export const createUser = async(req, res) => {
   try {
     const newUser = new User(req.body)
 
@@ -30,10 +30,10 @@ export const createItem = async(req, res) => {
   }
 }
 
-export const updateItem = (req, res) => {
+export const updateUser = (req, res) => {
 
 }
 
-export const deleteItem = (req, res) => {
+export const deleteUser = (req, res) => {
 
 }
