@@ -4,7 +4,6 @@ import { checkOrigin } from '../../middlewares/origin.js'
 import validation from '../../middlewares/validationMiddleware.js'
 import userSchema from '../../validators/usersValidation.js'
 
-
 const userRouter = express.Router()
 
 userRouter.get('/', getUsers)

@@ -1,6 +1,6 @@
 import Yup from 'yup'
 
-const userSchema = Yup.object({
+const authSchema = Yup.object({
   name: Yup.string().min(6).required(),
   email: Yup.string().email().required(),
   password: Yup.string()
@@ -11,4 +11,4 @@ const userSchema = Yup.object({
   )
 })
 
-export default userSchema
+export default authSchema
