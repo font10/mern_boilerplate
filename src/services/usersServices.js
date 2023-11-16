@@ -9,6 +9,15 @@ export const getUsersService = async () => {
   }
 }
 
+export const getUserService = async (id) => {
+  try {
+    const users = await User.findById(id)
+    return users
+  } catch (error) {
+    console.log(`Could not fetch the user ${error}`, error.statusCode)
+  }
+}
+
 export const createUserService = async (payload) => {
   try {
     const newUser = new User(payload)

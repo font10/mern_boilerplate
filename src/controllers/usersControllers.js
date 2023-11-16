@@ -1,9 +1,9 @@
-import { createUserService, deleteUserService, getUsersService, updateUserService } from "../services/usersServices.js"
+import { createUserService, deleteUserService, getUserService, getUsersService, updateUserService } from "../services/usersServices.js"
 import CustomError from '../helpers/customError.js'
 
 export const getUsers = async(req, res, next) => {
   try {
-    const users = getUsersService()
+    const users = await getUsersService()
     return res.status(201).json({ status: 'OK', data: users })
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))
@@ -11,9 +11,14 @@ export const getUsers = async(req, res, next) => {
 }
 
 export const getUser = async(req, res, next) => {
+  const { id } =  req.params
+  
   try {
-    
-  } catch (error) {
+    if(!id) { return next(new CustomError("No id found", 404)) }
+
+    const user = await getUserService(id)
+    return res.status(200).json({ status: 'OK', data: user })
+  } catch (err) {
     next(new CustomError(err.message, err.statusCode))
   }
 }
