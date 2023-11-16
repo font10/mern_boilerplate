@@ -1,4 +1,4 @@
-import { loginService, registerService, userExistsService } from "../services/authServices.js"
+import { comparePasswordsService, createTokenService, loginService, registerService, userExistsService } from "../services/authServices.js"
 import CustomError from '../helpers/customError.js'
 
 export const register = async(req, res, next) => {
@@ -24,8 +24,21 @@ export const login = async(req, res, next) => {
   const { body } = req
 
   try {
-    const login = await loginService(body)
-    res.status(200).send(login)    
+    const searchedUser = await userExistsService(body)
+
+    if(!searchedUser) {
+      return next(new CustomError('User not found. Signup please', 404))
+    }
+
+    const comparePassword = comparePasswordsService(body, searchedUser)
+
+    if(!comparePassword) {
+      return next(new CustomError('Invalid passwords', 404))
+    }
+    
+    const token = await createTokenService(searchedUser)
+    
+    return res.status(200).json({ status:' ok', data: searchedUser, token })   
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))
   }
