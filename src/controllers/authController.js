@@ -1,4 +1,4 @@
-import { comparePasswordsService, createTokenService, loginService, registerService, userExistsService } from "../services/authServices.js"
+import { comparePasswordsService, createTokenService, registerService, userExistsService } from "../services/authServices.js"
 import CustomError from '../helpers/customError.js'
 
 export const register = async(req, res, next) => {

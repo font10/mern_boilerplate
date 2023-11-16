@@ -21,25 +21,6 @@ export const registerService = async(payload) => {
   }
 }
 
-export const loginService = async(payload, user) => {
-  try {    
-    const comparePassword = bcrypt.compareSync(payload.password, user.password)
-
-    const bodyNewUser = {
-      name: payload.name,
-      email: payload.email,
-      password: hashedPass
-    }
-
-    const newUser = new User(bodyNewUser)
-    await newUser.save()
-
-    return newUser
-  } catch(error) {
-    console.log(`Could not create a user ${error}`, error.statusCode)
-  }
-}
-
 export const userExistsService = async(payload) => {
   try {
     const user = await User.find({ email: payload.email })
@@ -60,10 +41,10 @@ export const comparePasswordsService = async(payload, user) => {
 
 export const createTokenService = async(user) => {
   try {
-    console.log(process.env.JWT_SECRET_KEY)
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
       expiresIn: "5hr"
     })
+
     return token;
   } catch(error) {
     console.log(`Error creating token ${error}`, error.statusCode)
