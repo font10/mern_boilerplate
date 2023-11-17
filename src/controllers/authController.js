@@ -8,7 +8,11 @@ export const register = async(req, res, next) => {
   console.log(body)
   try {
     const searchedUser = await userExistsService(body)
+<<<<<<< HEAD
     console.log(searchedUser)
+=======
+    
+>>>>>>> 9a1279add24977d669e9dd739df2d1b338aa6e1f
     if(searchedUser) {
       return next(new CustomError('User already exists', 400))
     }
@@ -26,18 +30,23 @@ export const login = async(req, res, next) => {
   const { body } = req
 
   try {
-    const searchedUser = await userExistsService(body)
+    const existingUser = await userExistsService(body)
 
-    if(!searchedUser) {
+    if(!existingUser) {
       return next(new CustomError('User not found. Signup please', 404))
     }
 
+<<<<<<< HEAD
     const comparePassword = comparePasswords(body, searchedUser)
+=======
+    const comparePassword = comparePasswordsService(body, existingUser)
+>>>>>>> 9a1279add24977d669e9dd739df2d1b338aa6e1f
 
     if(!comparePassword) {
       return next(new CustomError('Invalid passwords', 404))
     }
     
+<<<<<<< HEAD
     const token = await createToken(searchedUser)
     
     res.cookie("token", token, {
@@ -52,6 +61,18 @@ export const login = async(req, res, next) => {
     const { password, ...user} = searchedUser
     
     return res.status(200).json({ status:' ok', data: user._doc })   
+=======
+    const token = await createTokenService(existingUser)
+
+    res.cookie( existingUser._id, token, {
+      path: '/',
+      expires: new Date (Date.now() + 1000 * 30 ),
+      httpOnly: true,
+      sameSite: 'lax'
+    })
+    
+    return res.status(200).json({ status:' ok', data: existingUser, token })   
+>>>>>>> 9a1279add24977d669e9dd739df2d1b338aa6e1f
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))
   }
