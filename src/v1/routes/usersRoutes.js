@@ -3,11 +3,12 @@ import { getUsers, getUser, createUser, updateUser, deleteUser } from '../../con
 import { checkOrigin } from '../../middlewares/origin.js'
 import validation from '../../middlewares/validationMiddleware.js'
 import userSchema from '../../validators/usersValidation.js'
+import { verifyToken } from '../../middlewares/verifyToken.js'
 
 const userRouter = express.Router()
 
 userRouter.get('/', getUsers)
-userRouter.get('/:id', getUser)
+userRouter.get('/:id', verifyToken, getUser)
 userRouter.post('/', checkOrigin, validation(userSchema), createUser)
 userRouter.patch('/:id', checkOrigin, validation(userSchema), updateUser)
 userRouter.delete('/:id', checkOrigin, deleteUser)
