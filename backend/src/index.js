@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import router from './v1/routes/index.js'
+import router from './routes/v1/index.js'
 import { connectDB } from './config/db.js'
 import { errorHandler } from './helpers/errorHandler.js'
 
