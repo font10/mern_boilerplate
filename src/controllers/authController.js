@@ -1,13 +1,15 @@
-import { comparePasswordsService, createTokenService, registerService, userExistsService } from "../services/authServices.js"
 import CustomError from '../helpers/customError.js'
+import { comparePasswords } from "../helpers/comparePassword.js"
+import { createToken } from "../helpers/createToken.js"
+import { registerService, userExistsService } from "../services/authServices.js"
 
 export const register = async(req, res, next) => {
   const { body } = req
-
+  console.log(body)
   try {
     const searchedUser = await userExistsService(body)
-    
-    if(searchedUser.length > 0) {
+    console.log(searchedUser)
+    if(searchedUser) {
       return next(new CustomError('User already exists', 400))
     }
 
@@ -30,16 +32,31 @@ export const login = async(req, res, next) => {
       return next(new CustomError('User not found. Signup please', 404))
     }
 
-    const comparePassword = comparePasswordsService(body, searchedUser)
+    const comparePassword = comparePasswords(body, searchedUser)
 
     if(!comparePassword) {
       return next(new CustomError('Invalid passwords', 404))
     }
     
-    const token = await createTokenService(searchedUser)
+    const token = await createToken(searchedUser)
     
-    return res.status(200).json({ status:' ok', data: searchedUser, token })   
+    res.cookie("token", token, {
+      maxAge: 18000,
+      path: '/',
+      expires: new Date() + 18000,
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax'
+    })
+
+    const { password, ...user} = searchedUser
+    
+    return res.status(200).json({ status:' ok', data: user._doc })   
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))
   }
+}
+
+export const setCookie = async(req, res, next) => {
+  
 }

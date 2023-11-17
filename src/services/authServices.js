@@ -1,6 +1,5 @@
 import User from '../models/usersModel.js'
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
 
 export const registerService = async(payload) => {
   try {    
@@ -27,26 +26,5 @@ export const userExistsService = async(payload) => {
     return user[0];
   } catch(error) {
     console.log(`Could not found the user ${error}`, error.statusCode)
-  }
-}
-
-export const comparePasswordsService = async(payload, user) => {
-  try {
-    const comparePassword = bcrypt.compareSync(payload.password, user.password)
-    return comparePassword;
-  } catch(error) {
-    console.log(`Error comparing passwords ${error}`, error.statusCode)
-  }
-}
-
-export const createTokenService = async(user) => {
-  try {
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "5hr"
-    })
-
-    return token;
-  } catch(error) {
-    console.log(`Error creating token ${error}`, error.statusCode)
   }
 }
