@@ -5,10 +5,10 @@ import { registerService, userExistsService } from "../services/authServices.js"
 
 export const register = async(req, res, next) => {
   const { body } = req
-  console.log(body)
+  
   try {
     const searchedUser = await userExistsService(body)
-    console.log(searchedUser)
+    
     if(searchedUser) {
       return next(new CustomError('User already exists', 400))
     }
@@ -32,13 +32,13 @@ export const login = async(req, res, next) => {
       return next(new CustomError('User not found. Signup please', 404))
     }
 
-    const comparePassword = comparePasswords(body, searchedUser)
+    const comparePassword = comparePasswords(body, existingUser)
 
     if(!comparePassword) {
       return next(new CustomError('Invalid passwords', 404))
     }
     
-    const token = await createToken(searchedUser)
+    const token = await createToken(existingUser)
     
     res.cookie("token", token, {
       maxAge: 18000,
@@ -49,7 +49,7 @@ export const login = async(req, res, next) => {
       sameSite: 'lax'
     })
 
-    const { password, ...user} = searchedUser
+    const { password, ...user} = existingUser
     
     return res.status(200).json({ status:' ok', data: user._doc })   
   } catch (err) {
