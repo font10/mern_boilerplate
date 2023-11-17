@@ -1,8 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import { connectDB } from './config/db.js'
 import router from './v1/routes/index.js'
+import { connectDB } from './config/db.js'
 import { errorHandler } from './helpers/errorHandler.js'
 
 const PORT = process.env.PORT || 5000
