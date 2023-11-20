@@ -33,5 +33,6 @@ export async function deleteImageFromMulter(file) {
 
 export async function deleteImage(id) {
   const res = await cloudinary.uploader.destroy(id)
+  console.log(res)
   return res
 }

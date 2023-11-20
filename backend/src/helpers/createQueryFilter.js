@@ -12,5 +12,7 @@ export async function createQueryFilter(query) {
     const skip = (page - 1) * 10
     const queryObj = { skip, limit }
     return queryObj
-  }  
+  }
+
+  return {}
 }

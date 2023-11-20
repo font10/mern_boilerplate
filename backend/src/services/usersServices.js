@@ -2,7 +2,6 @@ import User from '../models/usersModel.js'
 
 export const getUsersService = async (queryObj) => {
   try {
-    console.log(queryObj)
     if(queryObj.age) return await User.find(queryObj)
     return await User.find().skip(queryObj.skip).limit(queryObj.limit)
   } catch (error) {
