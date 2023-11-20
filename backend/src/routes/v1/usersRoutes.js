@@ -6,7 +6,7 @@ import { verifyToken } from '../../middlewares/verifyToken.js'
 
 const userRouter = express.Router()
 
-userRouter.get('/', verifyToken, getUsers)
+userRouter.get('/', getUsers)
 userRouter.get('/:id', verifyToken, getUser)
 userRouter.post('/', verifyToken, validation(userSchema), createUser)
 userRouter.patch('/:id', verifyToken, validation(userSchema), updateUser)

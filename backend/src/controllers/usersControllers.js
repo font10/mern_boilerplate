@@ -7,7 +7,7 @@ export const getUsers = async(req, res, next) => {
     const queryObj = await createQueryFilter(req.query)
     
     const users = await getUsersService(queryObj)
-    return res.status(201).json({ status: 'OK', data: users })
+    return res.status(200).json({ status: 'OK', data: users })
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))
   }

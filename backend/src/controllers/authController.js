@@ -43,7 +43,7 @@ export const login = async(req, res, next) => {
     res.cookie("token", token, {
       maxAge: 18000,
       path: '/',
-      expires: new Date() + 18000,
+      expires: new Date(Date.now() + 1000 * 18000),
       httpOnly: true,
       secure: false,
       sameSite: 'lax'
@@ -51,7 +51,7 @@ export const login = async(req, res, next) => {
 
     const { password, ...user} = existingUser
     
-    return res.status(200).json({ status:' ok', data: user._doc })   
+    return res.status(200).json({ status:' ok', data: user._doc, token })   
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))
   }
