@@ -57,6 +57,11 @@ export const login = async(req, res, next) => {
   }
 }
 
-export const setCookie = async(req, res, next) => {
-  
+export const logout = async(req, res, next) => {
+  try {
+    res.clearCookie('token')
+    res.end()
+  } catch (err) {
+    next(new CustomError(err.message, err.statusCode))
+  }
 }
