@@ -6,8 +6,8 @@ const userSchema = Yup.object({
   password: Yup.string()
   .required('No password provided.') 
   .matches(
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-    "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+    "Must Contain 8 Characters, One Uppercase, One Lowercase and One Numberr"
   )
 })
 
