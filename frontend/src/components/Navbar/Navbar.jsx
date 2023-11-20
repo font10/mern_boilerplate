@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+import { MenuNav } from "./components"
+
 
 export const Navbar = () => {
   return (
@@ -14,11 +15,7 @@ export const Navbar = () => {
           </figure>
         </section>
         <section id="navbar-with-collapse" className="hidden basis-full grow sm:block">
-          <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-            <Link to='/' className="font-medium text-cyan-400 hover:text-cyan-300" href="#" aria-current="page">Home</Link>
-            <Link to='/' className="font-medium text-gray-300 hover:text-gray-200" href="#">Login</Link>
-            <Link to='/' className="font-medium text-gray-300 hover:text-gray-200" href="#">Sign Up</Link>
-          </div>
+          <MenuNav />
         </section>
       </nav>
     </header>
