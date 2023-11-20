@@ -31,7 +31,7 @@ export const verifyToken = async(req, res, next) => {
     }
   } catch(err) {
     res.clearCookie("token")
-    return res.direct('/')
+    //return res.direct('/')
   }
 }
 
