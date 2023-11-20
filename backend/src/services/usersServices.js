@@ -1,9 +1,10 @@
 import User from '../models/usersModel.js'
 
-export const getUsersService = async () => {
+export const getUsersService = async (queryObj) => {
   try {
-    const users = await User.find({})
-    return users
+    console.log(queryObj)
+    if(queryObj.age) return await User.find(queryObj)
+    return await User.find().skip(queryObj.skip).limit(queryObj.limit)
   } catch (error) {
     console.log(`Could not fetch users ${error}`, error.statusCode)
   }
