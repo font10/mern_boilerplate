@@ -7,6 +7,6 @@ export const createAdapterLogin = (data) => {
       email: data?.user?.email, 
     }
   }
-  console.log(formattedUser)
+  
   return formattedUser
 }

@@ -28,9 +28,10 @@ export const getUser = async(req, res, next) => {
 
 export const createUser = async(req, res, next) => {
   const { body } = req
+  console.log(body)
   
   try {
-    const user = await createUserService(body)
+    const user = await createUserService(body.data)
     return res.status(201).json({ status: 'OK', data: user })
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))

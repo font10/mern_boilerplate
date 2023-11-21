@@ -21,7 +21,9 @@ export const getUserService = async (id) => {
 export const createUserService = async (payload) => {
   try {
     const newUser = new User(payload)
+    console.log(newUser)
     const user = await newUser.save();
+    console.log(1)
     return user;
   } catch(error) {
     console.log(`Could not create a user ${error}`, error.statusCode)

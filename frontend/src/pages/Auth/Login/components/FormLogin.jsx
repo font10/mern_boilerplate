@@ -19,6 +19,7 @@ export const FormLogin = () => {
 
   const onSubmit = async(data) => {
     const user = await sendRequest(data)
+    console.log(user)
     const adapterUser = createAdapterLogin(user)
     console.log(adapterUser)
     dispatch(login(adapterUser))
