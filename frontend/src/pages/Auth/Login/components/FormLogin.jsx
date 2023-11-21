@@ -5,9 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginService } from "../../../../services/auth.api";
 import { createAdapterLogin } from "../adapters/createAdapterLogin";
 import { loginSchema } from "../../../../validations/Auth/authYupValidation";
+import { useNavigate } from "react-router-dom";
+import { route } from "../../../../models/route.model";
 
 export const FormLogin = () => {
-  
+  const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -15,6 +17,7 @@ export const FormLogin = () => {
   const onSubmit = async(data) => {
     const res = await sendRequest(data)
     console.log(res)
+    navigate(route.root.path)
   };
 
   const sendRequest = async (data) => {

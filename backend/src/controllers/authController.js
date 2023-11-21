@@ -40,15 +40,6 @@ export const login = async(req, res, next) => {
     }
     
     const token = await createToken(existingUser)
-    
-    res.cookie("token", token, {
-      maxAge: 18000,
-      path: '/',
-      expires: new Date(Date.now() + 1000 * 18000),
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax'
-    })
 
     const { password, ...user} = existingUser
     
