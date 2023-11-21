@@ -4,7 +4,7 @@ import { MenuNav } from "./components"
 
 export const Navbar = () => {
   return (
-    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap bg-gray-950 z-50 w-full bg-white text-sm py-4 dark:bg-gray-800">
+    <header className="flex flex-wrap sm:justify-start sm:flex-nowrap bg-gray-950 z-50 w-full text-sm py-4 bg-gray-800">
       <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
         <section className="flex items-center justify-between">
           <Link to={route.root.path} className="flex-none text-xl font-semibold text-white">App</Link>

@@ -7,6 +7,7 @@ export const register = async(req, res, next) => {
   const { body } = req
   
   try {
+    console.log(body)
     const searchedUser = await userExistsService(body)
     
     if(searchedUser) {
