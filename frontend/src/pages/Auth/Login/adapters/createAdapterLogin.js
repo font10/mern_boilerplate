@@ -1,8 +1,12 @@
-export const createAdapterLogin = (user) => {
+export const createAdapterLogin = (data) => {
   const formattedUser = {
-    email: user.email, 
-    password: user.password,
+    token: data?.token,
+    user: {
+      id: data?.user?._id,
+      name: data?.user?.name,
+      email: data?.user?.email, 
+    }
   }
-
+  console.log(formattedUser)
   return formattedUser
 }

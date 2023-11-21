@@ -8,12 +8,12 @@ const signUpService = async(user) => {
   return res
 }
 
-const loginService = async(user) => {
-  const res = await axios
-    .post('http://localhost:5000/api/v1/auth/login', user)
+const loginService = async(email, password) => {
+  const { data } = await axios
+    .post('http://localhost:5000/api/v1/auth/login', { email, password })
     .catch(err => console.log(err))
-  console.log(res)
-  return res
+    console.log(data)
+  return data
 }
 
 export {

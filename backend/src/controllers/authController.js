@@ -41,9 +41,9 @@ export const login = async(req, res, next) => {
     
     const token = await createToken(existingUser)
 
-    const { password, ...user} = existingUser
+    const { password, ...user} = existingUser._doc
     
-    return res.status(200).json({ status:' ok', data: user._doc, token })   
+    return res.status(200).json({ status:' ok', user: user, token })   
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))
   }

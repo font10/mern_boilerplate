@@ -7,22 +7,27 @@ import { createAdapterLogin } from "../adapters/createAdapterLogin";
 import { loginSchema } from "../../../../validations/Auth/authYupValidation";
 import { useNavigate } from "react-router-dom";
 import { route } from "../../../../models/route.model";
+import { useDispatch } from "react-redux";
+import { login } from "../../../../redux/slices/authSlice";
 
 export const FormLogin = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
   const onSubmit = async(data) => {
-    const res = await sendRequest(data)
-    console.log(res)
+    const user = await sendRequest(data)
+    const adapterUser = createAdapterLogin(user)
+    console.log(adapterUser)
+    dispatch(login(adapterUser))
     navigate(route.root.path)
   };
 
   const sendRequest = async (data) => {
-    const user = createAdapterLogin(data)
-    const res = await loginService(user)
+    const { email, password } = data
+    const res = await loginService(email, password)
     
     return res
   }
