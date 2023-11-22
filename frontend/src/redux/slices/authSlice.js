@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   user: null,
@@ -11,12 +11,8 @@ export const authSlice = createSlice({
   reducers: {
     login(state, action) {
       localStorage.clear()
-      console.log(current(state))
-
-      console.log(action.payload)
       state.user = action.payload.user
       state.token = action.payload.token
-      console.log(current(state))
     },
     register(state, action) {
       localStorage.clear()
@@ -28,13 +24,6 @@ export const authSlice = createSlice({
       state.token = null
       localStorage.clear()
     },
-    changeInfoUser(state, action) {
-      const { firstName, lastName, username, birthdate } = action.payload
-      state.user.firstName = firstName
-      state.user.lastName = lastName
-      state.user.username = username
-      state.user.birthdate = birthdate
-    }
   }
 })
 

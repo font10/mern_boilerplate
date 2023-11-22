@@ -13,6 +13,10 @@ export const route = {
       path: '/signup',
     },
   },
+  dashboard: {
+    title: 'Dashboard',
+    path: '/dashboard',
+  },
 
 }
 

@@ -1,10 +1,3 @@
-import { route } from "../models/route.model";
-
-const menusNav = [
-  { id: 1, name: 'Home', path: route.root.path },
-  { id: 2, name: 'Login', path: route.auth.login.path },
-  { id: 3, name: 'Sign up', path: route.auth.signup.path },
-]
 
 const inputsSignUp = [
   { id: 1, label: "Name", type: "text", name: "name", placeholder: "Name..." }, 
@@ -19,7 +12,6 @@ const inputsLogin = [
 ]
 
 export {
-  menusNav,
   inputsLogin,
   inputsSignUp
 }
