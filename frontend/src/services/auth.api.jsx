@@ -1,4 +1,4 @@
-import axios from '../api/auth.js'
+import axios from '../api/axios.js'
 
 const signUpService = async(user) => {
   const res = await axios
@@ -16,7 +16,22 @@ const loginService = async(email, password) => {
   return data
 }
 
+const addPalaService = async(data, token) => {
+  const res = await axios.post('http://localhost:5000/api/v1/palas', data, { headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }})
+  console.log(res)
+}
+
+const getPalasService = async() => {
+  const { data } = await axios.get('/palas')
+  return data.data 
+}
+
 export {
+  addPalaService,
+  getPalasService,
   loginService,
   signUpService
 }

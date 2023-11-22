@@ -21,6 +21,7 @@ export const getPalaService = async (id) => {
 
 export const createPalaService = async (payload) => {
   try {
+    console.log(payload)
     const newPala = new Pala(payload)
     const user = await newPala.save();
 
@@ -39,12 +40,11 @@ export const updatePalaService = async (id, payload) => {
   }
 }
 
-export const deletePalaService = async (id, payload, next) => {
+export const deletePalaService = async (id, payload) => {
   try {
     const pala = await Pala.findByIdAndDelete(id)
     return pala;
   } catch(err) {
-    next(new CustomError(err.message, err.statusCode))
-    //console.log(`Could not delete the pala ${error}`, error.statusCode)
+    console.log(`Could not delete the pala ${error}`, error.statusCode)
   }
 }

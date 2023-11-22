@@ -1,43 +1,33 @@
-import axios from '../../api/jsonPH'
-import useAxiosFunc from "../../hooks/useAxiosFunc"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { addPalaService, getPalasService } from '../../services/auth.api'
 
 export const Home = () => {
   const { user, token } = useSelector(state => state.auth)
-  const [users, error, loading, axiosFetch] = useAxiosFunc()
+  const [palas, setPalas] = useState([])
 
-  const getData = () => {
-    axiosFetch({
-      axiosInstance: axios,
-      method: 'get',
-      url: '/users',
-    })
+  const getPalas = async() => {
+    getPalasService()
+    .then(res => { console.log(res);  setPalas(res)})
+    .catch(err => console.log(err))
   }
   
   useEffect(() => {
-    getData()
+    getPalas()
     // eslint-disable-next-line
   }, [])
 
   const handleSubmit = async() => {
+    const data = {      
+      marca: "Head",
+      modelo: "Delta Pro",
+      forma: "Diamante",
+      tacto: "Duro",
+    }
 
-    /*const res = await axios.post('http://localhost:5000/api/v1/users', data, { headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    }})*/
-    axiosFetch({
-      axiosInstance: axios,
-      method: 'post',
-      url: '/users',
-      requestConfig: {
-        data: {
-          name: "provaaa",
-          password: "Prova123",
-          email: "provaemail@mail.com"
-        }
-      }
-    })
+    const res = await addPalaService(data, token)
+    console.log(res)
+
   }
 
   return (
@@ -47,12 +37,15 @@ export const Home = () => {
         {user?.name}
       </p>
       <div className="mt-10">
-        { loading && <p>Loading...</p>  }
-        { !users && error && <p>{error}</p> }
         <div>
-          {
-            users?.data?.map(user => (
-              <p key={user?._id}>{user?.name}</p>
+        {
+            palas?.map(pala => (
+              <div key={pala?._id} className='border border-gray-200 w-48 my-2 rounded-md p-5'>
+                <p><span className='font-medium'>Marca: </span>{pala?.marca}</p>
+                <p><span className='font-medium'>Modelo: </span>{pala?.modelo}</p>
+                <p><span className='font-medium'>Forma: </span>{pala?.forma}</p>
+                <p><span className='font-medium'>Tacto: </span>{pala?.tacto}</p>
+              </div>
             ))
           }
         </div>
@@ -63,40 +56,18 @@ export const Home = () => {
 }
 
 /*
-import useAxios from "../../hooks/useAxios"
-import axios from '../../api/auth'
-
-export const Home = () => {
-
-  const [users, error, loading, refetch] = useAxios({
-    axiosInstance: axios,
-    method: 'GET',
-    url: '/users',
-    requestConfig: {
-      headers: {
-        'Content-language': 'es'
-      }
-    }
-  })
-  
-
-  
-  return (
-    <article>
-      <h2>Home</h2>
-      <div>
-        { loading && <p>Loading...</p>  }
-        { !users && error && <p>{error}</p> }
+{ loading && <p>Loading...</p>  }
+        { !palas && error && <p>{error}</p> }
         <div>
-          {
-            users?.data?.map(user => (
-              <p key={user?._id}>{user?.name}</p>
+        {
+            palas?.map(pala => (
+              <div key={pala?._id} className='border border-gray-200 w-48 my-2 rounded-md p-5'>
+                <p><span className='font-medium'>Marca: </span>{pala?.marca}</p>
+                <p><span className='font-medium'>Modelo: </span>{pala?.modelo}</p>
+                <p><span className='font-medium'>Forma: </span>{pala?.forma}</p>
+                <p><span className='font-medium'>Tacto: </span>{pala?.tacto}</p>
+              </div>
             ))
           }
         </div>
-        <button onClick={refetch}>Get user name</button>
-      </div>      
-    </article>
-  )
-}
 */
