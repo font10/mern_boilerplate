@@ -7,6 +7,7 @@ export const register = async(req, res, next) => {
   const { body } = req
   
   try {
+    console.log(body)
     const searchedUser = await userExistsService(body)
     
     if(searchedUser) {
@@ -39,29 +40,12 @@ export const login = async(req, res, next) => {
     }
     
     const token = await createToken(existingUser)
-    
-    res.cookie("token", token, {
-      maxAge: 18000,
-      path: '/',
-      expires: new Date(Date.now() + 1000 * 18000),
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax'
-    })
 
-    const { password, ...user} = existingUser
+    const { password, ...user} = existingUser._doc
     
-    return res.status(200).json({ status:' ok', data: user._doc, token })   
+    return res.status(200).json({ status:' ok', user: user, token })   
   } catch (err) {
     next(new CustomError(err.message, err.statusCode))
   }
 }
 
-export const logout = async(req, res, next) => {
-  try {
-    res.clearCookie('token')
-    res.end()
-  } catch (err) {
-    next(new CustomError(err.message, err.statusCode))
-  }
-}
