@@ -11,6 +11,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authSlice from "./slices/authSlice"
+import palasSlice from "./slices/palasSlice"
+import modalSlice from "./slices/modalSlice"
 
 const persistConfig = {
     key: "root",
@@ -20,6 +22,8 @@ const persistConfig = {
 
 const reducers = combineReducers({
     auth: authSlice,
+    palas: palasSlice,
+    modal: modalSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers);

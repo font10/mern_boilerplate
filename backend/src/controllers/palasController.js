@@ -25,9 +25,7 @@ export const getPala = async(req, res, next) => {
 
 export const createPala = async(req, res, next) => {
   const { body } = req
-  console.log(req.body)
   try {
-    console.log(req.body)
     const pala = await createPalaService(body)
     return res.status(201).json({ status: 'OK', data: pala })
   } catch (err) {

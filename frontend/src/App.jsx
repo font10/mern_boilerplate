@@ -4,6 +4,8 @@ import { route } from './models/route.model'
 import { Layout, ProtectedRoute } from './components'
 import { SignUp, Home, Login, Dashboard } from './pages'
 import { useSelector } from 'react-redux'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { user } = useSelector(state => state.auth)
@@ -11,6 +13,7 @@ function App() {
   return (
     <>
       <Layout>
+        <ToastContainer className="h-20" />
         <Routes>
           <Route element={<ProtectedRoute isAllowed={!!user} />} >
             <Route path={ route.dashboard.path } element={<Dashboard />} />

@@ -1,4 +1,6 @@
 export const createAdapterLogin = (data) => {
+  if (!data) return null
+  
   const formattedUser = {
     token: data?.token,
     user: {

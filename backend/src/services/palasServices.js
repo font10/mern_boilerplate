@@ -21,7 +21,6 @@ export const getPalaService = async (id) => {
 
 export const createPalaService = async (payload) => {
   try {
-    console.log(payload)
     const newPala = new Pala(payload)
     const user = await newPala.save();
 

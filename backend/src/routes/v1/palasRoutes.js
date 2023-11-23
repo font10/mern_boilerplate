@@ -8,8 +8,8 @@ const palasRouter = express.Router()
 
 palasRouter.get('/', getPalas)
 palasRouter.get('/:id', getPala)
-palasRouter.post('/', createPala)
-palasRouter.patch('/:id', verifyToken, validation(palaSchema), updatePala)
-palasRouter.delete('/:id', verifyToken, deletePala)
+palasRouter.post('/', verifyToken, validation(palaSchema), createPala)
+palasRouter.patch('/:id', validation(palaSchema), updatePala)
+palasRouter.delete('/:id', deletePala)
 
 export default palasRouter

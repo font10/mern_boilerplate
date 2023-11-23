@@ -17,6 +17,6 @@ const palasSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-}, { timestamps: true, versionKey: false } )
+}, { timestamps: true } )
 
 export default mongoose.model("Palas", palasSchema)
