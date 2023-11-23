@@ -5,14 +5,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { fetchPalas } from "../../../../redux/thunks/palasThunks"
 import { toTrue } from "../../../../redux/slices/modalSlice"
-import { CreatePala } from "../../Create/CreatePala"
+import { CreatePala } from "../../components/Create/CreatePala"
 import { Edit } from "../../Edit/Edit"
 import { changeId } from "../../../../redux/slices/palasSlice"
 
 export const PalasList = () => {
   const dispatch = useDispatch()
   const { palas, status, error, id } = useSelector(state => state.palas)
-  console.log(id)
   
   useEffect(() => {
     if(status === 'idle') dispatch(fetchPalas())

@@ -3,7 +3,7 @@ export const getPalasAdapter = (data) => {
 
   const formattedPalas = data.map(pala => {
     return {
-      id: pala?._id,
+      _id: pala?._id,
       marca: pala?.marca,
       modelo: pala?.modelo,  
       forma: pala?.forma,  

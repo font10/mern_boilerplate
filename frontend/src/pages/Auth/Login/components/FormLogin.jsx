@@ -5,25 +5,25 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginService } from "../../../../services/auth.api";
 import { createAdapterLogin } from "../adapters/createAdapterLogin";
 import { loginSchema } from "../../../../validations/Auth/authYupValidation";
-import { useNavigate } from "react-router-dom";
-import { route } from "../../../../models/route.model";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export const FormLogin = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { location } = useSelector(state => state.auth)
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(loginSchema),
   });
+  console.log(location)
 
   const onSubmit = async(data) => {
     const user = await sendRequest(data)
-    console.log(user)
     const adapterUser = createAdapterLogin(user)
     console.log(adapterUser)
     dispatch(login(adapterUser))
-    navigate(route.root.path)
+    navigate(location)
   };
 
   const sendRequest = async (data) => {

@@ -1,19 +1,15 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Panel, Presentation } from "./components/index";
 
 export const Home = () => {
-  const { user, token } = useSelector(state => state.auth)
+  const { user } = useSelector(state => state.auth)
 
   return (
-    <article>
-      <h2>Home</h2>
-      <p className="flex flex-col text-xl font-medium mb-5">
-        <p>{user?.name}</p>
-        <p>{user?.email}</p>
-        <p>{user?._id}</p>
-        <p className="text-sm">{token && token}</p>
-      </p>
-      <Link to='/dashboard' className="px-6 py-2 rounded-md bg-blue-200 font-medium">Dashboard</Link>
-    </article>
+    <section className="flex flex-col items-center w-full h-96 bg-blue-100 rounded-md bg-opacity-60 p-8 mt-8">
+      { user !== null
+        ? <Panel />
+        : <Presentation />
+      }
+    </section>
   )
 }
