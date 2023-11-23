@@ -1,14 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { InputField } from "../../../components/index"
-import { inputsCreatePala } from "../../../utils/constants"
+import { InputField } from "../../../../components/index"
+import { inputsCreatePala } from "../../../../utils/constants"
 import { useForm } from "react-hook-form";
-import { palaSchema } from "../../../validations/Palas/palasYupValidation";
+import { palaSchema } from "../../../../validations/Palas/palasYupValidation";
 import { useSelector } from "react-redux";
-import { addPala } from "../../../redux/thunks/palasThunks";
-import { changeStatus } from '../../../redux/slices/palasSlice';
-import { toFalse } from '../../../redux/slices/modalSlice';
-import { getToast } from '../../../utils/function';
+import { addPala } from "../../../../redux/thunks/palasThunks";
+import { changeStatus } from '../../../../redux/slices/palasSlice';
+import { toFalse } from '../../../../redux/slices/modalSlice';
+import { getToast } from '../../../../utils/function';
 
 export const CreatePala = () => {
   const dispatch = useDispatch()

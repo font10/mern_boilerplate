@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { fetchPalas } from "../../../../redux/thunks/palasThunks"
 import { toTrue } from "../../../../redux/slices/modalSlice"
 import { CreatePala } from "../../components/Create/CreatePala"
-import { Edit } from "../../Edit/Edit"
+import { Edit } from "../Edit/Edit"
 import { changeId } from "../../../../redux/slices/palasSlice"
 
 export const PalasList = () => {

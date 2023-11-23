@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { inputsCreatePala } from '../../../utils/constants';
-import { InputField } from '../../../components';
+import { inputsCreatePala } from '../../../../utils/constants';
+import { InputField } from '../../../../components';
 import { useForm } from 'react-hook-form';
-import { palaSchema } from '../../../validations/Palas/palasYupValidation';
+import { palaSchema } from '../../../../validations/Palas/palasYupValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { editPala } from '../../../redux/thunks/palasThunks';
-import { toFalse } from '../../../redux/slices/modalSlice';
-import { changeStatus } from '../../../redux/slices/palasSlice';
-import { getToast } from '../../../utils/function';
+import { editPala } from '../../../../redux/thunks/palasThunks';
+import { toFalse } from '../../../../redux/slices/modalSlice';
+import { changeStatus } from '../../../../redux/slices/palasSlice';
+import { getToast } from '../../../../utils/function';
 
 export const Edit = () => {
   const { token } = useSelector(state => state.auth)

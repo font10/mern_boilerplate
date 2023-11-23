@@ -1,9 +1,11 @@
 import { PalasList } from "./Palas/PalasList";
 import { PalasListItem } from "./Palas/PalasListItem";
-import { Create } from './Create/CreatePala'
+import { CreatePala } from './Create/CreatePala'
+import { Edit } from './Edit/Edit'
 
 export { 
-  Create,
+  CreatePala,
+  Edit,
   PalasList,
   PalasListItem 
 }
