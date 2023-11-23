@@ -16,12 +16,11 @@ export const FormLogin = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(loginSchema),
   });
-  console.log(location)
 
   const onSubmit = async(data) => {
     const user = await sendRequest(data)
     const adapterUser = createAdapterLogin(user)
-    console.log(adapterUser)
+    
     dispatch(login(adapterUser))
     navigate(location)
   };

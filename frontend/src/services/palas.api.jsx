@@ -1,9 +1,10 @@
 import axios from '../api/axios.js'
+import { getPalasAdapter } from '../pages/Dashboard/adapters/getPalasAdapter.jsx'
 
 const getPalasService = async() => {
   try {
     const response = await axios.get('/palas')
-    return response?.data.data
+    return getPalasAdapter(response?.data?.data)
   } catch (error) {
     return error.message
   }
