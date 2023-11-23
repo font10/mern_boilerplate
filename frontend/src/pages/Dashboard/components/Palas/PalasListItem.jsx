@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import PropTypes from "prop-types";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -8,10 +9,11 @@ import { getToast } from "../../../../utils/function";
 
 export const PalasListItem = ({pala}) => {
   const dispatch = useDispatch()
+  const { token } = useSelector(state => state.auth)
 
   const handleDelete = async(id) => {
     try {
-      const res = await dispatch(deletePala(id))
+      const res = await dispatch(deletePala({id, token}))
       if(res.meta.requestStatus === 'fulfilled') {
         getToast('success', 'Deleted succesfully', 'top-center')
       }

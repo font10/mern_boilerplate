@@ -10,6 +10,7 @@ import { changeStatus } from '../../../redux/slices/palasSlice';
 import { getToast } from '../../../utils/function';
 
 export const Edit = () => {
+  const { token } = useSelector(state => state.auth)
   const { palas, id } = useSelector(state => state.palas)
   const dispatch = useDispatch()
   const pala = palas.find(pala => pala._id === id)
@@ -20,7 +21,7 @@ export const Edit = () => {
 
   const onSubmit = async(updPala) => {
     try {
-      const res = await dispatch(editPala({id, updPala}))
+      const res = await dispatch(editPala({id, updPala, token}))
       if(res.meta.requestStatus === 'fulfilled') {
         getToast('success', 'Updated succesfully', 'top-center')
       }

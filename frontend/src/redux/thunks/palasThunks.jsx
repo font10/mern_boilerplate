@@ -20,18 +20,18 @@ export const addPala = createAsyncThunk("post/addNewPala", async ({newPala, toke
   }
 })
 
-export const editPala = createAsyncThunk("edit/editPala", async ({id, updPala}) => {
+export const editPala = createAsyncThunk("edit/editPala", async ({id, updPala, token}) => {
   try {
-    const response = await editPalaService(id, updPala)
+    const response = await editPalaService(id, updPala, token)
     return response
   } catch (error) {
     return error.message
   }
 })
 
-export const deletePala = createAsyncThunk("delete/deletePala", async (id) => {
+export const deletePala = createAsyncThunk("delete/deletePala", async ({id, token}) => {
   try {
-    const response = await deletePalaService(id)
+    const response = await deletePalaService(id, token)
     return response
   } catch (error) {
     return error.message
