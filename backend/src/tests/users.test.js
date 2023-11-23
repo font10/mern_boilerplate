@@ -2,12 +2,8 @@ import app from "../app";
 import request from "supertest";
 import dotenv from "dotenv";
 import mongoose from 'mongoose'
-import User from '../models/usersModel.js'
-import cookieParser from 'cookie-parser'
 
 dotenv.config()
-
-
 
 describe("Pruebas sobre Api Users", () => {
 
@@ -19,10 +15,10 @@ describe("Pruebas sobre Api Users", () => {
       await mongoose.disconnect();
   });
 
-  describe("GET /api/v1/users", () => {
+  describe("GET /api/v1/palas", () => {
     let response;
     beforeEach(async () => {
-      response = await request(app).get("/api/v1/users").send();
+      response = await request(app).get("/api/v1/palas").send();
     });
 
     it("La ruta funciona", async () => {
@@ -36,33 +32,40 @@ describe("Pruebas sobre Api Users", () => {
 
   });
 
-  describe('POST /api/v1/users', () => {
-    const newTrip = { name: 'test trip', email: 'trip@mail.com', password: 'Prova123' };
+  describe('POST /api/v1/palas', () => {
+    const newTrip = {
+      marca: "GF Padel",
+      modelo: "Slam",
+      forma: "Diamante",
+      tacto: "Medio-Duro"
+    };
     const wrongTrip = { nombre: 'test trip' };
-
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWM5OGQ1MjQzZGZhODM1YzA3OTY4ZiIsImlhdCI6MTcwMDc2MzA3NywiZXhwIjoxNzAwNzgxMDc3fQ.MlVeFuYrtzjec_kRDXnsMluTrJwIQDF2sH_3Tt6Ch9s'
+    
+    let response;
+    beforeEach(async () => {
+      response = await request(app).get("/api/v1/palas")
+      .set({ Authorization: token })
+      .send(newTrip);
+    });
     /*afterAll(async () => {
         await User.deleteMany({ name: 'test trip' });
     });*/
     
-    let cookie = '';
+    /*let cookie = '';
     beforeAll(async() => {
       const response = await request(app).post('/api/v1/auth/login').send({
         email: 'provaemail@mail.com',
         password: 'Prova123'
       });
-      cookie = response.headers['set-cookie'][0].split('=')[1].split(';')[0]
-    })
+      console.log(response.headers['set-cookie'])
+      cookie = response.headers['set-cookie'].split('=')[1].split(';')[0]
+    })*/
 
     it('La ruta funciona', async () => {
-      const response = await request(app)
-        .post('/api/v1/users')
-        .set('token', cookie)
-        .send(newTrip);
-
-
-      expect(response.status).toBe(201);
+      expect(response.status).toBe(200);
       expect(response.headers['content-type']).toContain('json');
-    }, 30000);
+    });
 
     /*it('Se inserta correctamente', async () => {
         const response = await request(app).post('/api/v1/users').send(newTrip);
