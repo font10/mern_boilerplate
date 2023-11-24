@@ -1,4 +1,4 @@
-import { InputField } from "../../../../components/Input/InputField";
+import { InputField } from "../../../../components/index";
 import { inputsLogin } from "../../../../utils/constants";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

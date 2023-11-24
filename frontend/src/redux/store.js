@@ -10,9 +10,7 @@ import {
     REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import authSlice from "./slices/authSlice"
-import palasSlice from "./slices/palasSlice"
-import modalSlice from "./slices/modalSlice"
+import { authSlice, modalSlice, palasSlice } from "./slices";
 
 const persistConfig = {
     key: "root",
