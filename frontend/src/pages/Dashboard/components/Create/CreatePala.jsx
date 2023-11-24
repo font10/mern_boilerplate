@@ -37,20 +37,20 @@ export const CreatePala = () => {
       <section>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col px-7 py-5">
           <fieldset className="w-full">
-              {
-                inputsCreatePala.map(input => (
-                  <InputField
-                    key={input.id}
-                    id={input.id}
-                    label={input.label}
-                    name={input.name}
-                    placeholder={input.placeholder}
-                    type={input.type}
-                    error={errors[input.name]?.message}
-                    register ={register}
-                  />
-                ))
-              }       
+            {
+              inputsCreatePala.map(input => (
+                <InputField
+                  key={input.id}
+                  id={input.id}
+                  label={input.label}
+                  name={input.name}
+                  placeholder={input.placeholder}
+                  type={input.type}
+                  error={errors[input.name]?.message}
+                  register ={register}
+                />
+              ))
+            }       
             <button className="mt-3 w-full py-2 rounded-md font-medium bg-blue-300">Enviar</button>
           </fieldset>
         </form>
