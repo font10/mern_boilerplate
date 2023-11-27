@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import { route } from "../../../models/route.model";
-import node from "../../../assets/icons/node.png";
-import express from "../../../assets/icons/express.png";
-import mongo from "../../../assets/icons/mongo.png";
-import jwt from "../../../assets/icons/jwt.png";
-import yup from "../../../assets/icons/yup.png";
-import supertest from "../../../assets/icons/supertest.png";
-import multer from "../../../assets/icons/multer.png";
-import cloudinary from "../../../assets/icons/cloudinary.svg";
+import {
+  cloudinary,
+  express,
+  jest,
+  jwt,
+  mongo,
+  multer,
+  node,
+  react,
+  react_hook_form,
+  react_router_dom,
+  react_testing_library,
+  react_toastify,
+  redux,
+  supertest,
+  yup
+} from '../../../assets/icons/index'
 
 
 export const Presentation = () => {
@@ -24,38 +33,34 @@ export const Presentation = () => {
           <article>
             <header>Backend</header>
             <section className="flex flex-row gap-2">
-              <img src={node} width={30} alt="" />
-              <img src={express} width={30} alt="" />
-              <img src={mongo} width={30} alt="" />
-              <img src={jwt} width={30} alt="" />
-              <img src={yup} width={30} alt="" />
-              <img src={supertest} width={30} alt="" />
-              <img src={multer} width={30} alt="" />
-              <img src={cloudinary} width={30} alt="" />
+              <img src={node} width={25} alt="" />
+              <img src={express} width={25} alt="" />
+              <img src={mongo} width={25} alt="" />
+              <img src={jwt} width={25} alt="" />
+              <img src={yup} width={25} alt="" />
+              <img src={multer} width={25} alt="" />
+              <img src={cloudinary} width={25} alt="" />
+              <img src={jest} width={25} alt="" />
+              <img src={supertest} width={25} alt="" />
             </section>
           </article>
 
             <article>
               <header>Frontend</header>
               <section className="flex flex-row gap-2">
-                <img src={node} width={30} alt="" />
-                <img src={express} width={30} alt="" />
-                <img src={mongo} width={30} alt="" />
-                <img src={jwt} width={30} alt="" />
-                <img src={yup} width={30} alt="" />
-                <img src={supertest} width={30} alt="" />
-                <img src={multer} width={30} alt="" />
-                <img src={cloudinary} width={30} alt="" />
+                <img src={react} width={25} alt="" />
+                <img src={redux} width={25} alt="" />
+                <img src={react_hook_form} width={25} alt="" />
+                <img src={react_router_dom} width={25} alt="" />
+                <img src={react_toastify} width={25} alt="" />
+                <img src={yup} width={25} alt="" />
+                <img src={jest} width={25} alt="" />
+                <img src={react_testing_library} width={25} alt="" />
               </section>
             </article>
         </section>
-        <li>
-          Frontend uses React, Redux-Toolkit, Redux-Persist, React-router-dom,
-          React-hook-form, React-toastify, React-icons, Yup, Tailwind CSS, Jest
-          and React Testing Library
-        </li>
       </p>
-      <div className="flex flex-row gap-2 items-center mt-5">
+      <div className="flex flex-row gap-2 items-center mt-14">
         <Link
           to={route.auth.login.path}
           className="px-6 py-2 rounded-md bg-blue-200 font-medium"

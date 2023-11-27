@@ -28,7 +28,7 @@ export const login = async(req, res, next) => {
 
   try {
     const existingUser = await userExistsService(body)
-
+    console.log(existingUser)
     if(!existingUser) {
       return next(new CustomError('User not found. Signup please', 404))
     }
