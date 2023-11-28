@@ -1,11 +1,11 @@
 {
-  "name": "good_estructure_api_node",
+  "name": "mern_boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": nodemon src/index.js",
+    "start": "nodemon src/index.js",
     "dev": "nodemon src/index.js",
     "test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest"
   },
