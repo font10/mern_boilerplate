@@ -1,5 +1,5 @@
 import { PalasListItem } from "./PalasListItem"
-import { MdAdd } from 'react-icons/md'
+import { MdAdd } from '../../../../utils/icons'
 import Modal from "../../../../components/Modal/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"

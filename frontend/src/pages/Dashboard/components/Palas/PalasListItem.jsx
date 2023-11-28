@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import PropTypes from "prop-types";
-import { MdEdit, MdDelete } from "react-icons/md";
+import { MdEdit, MdDelete } from "../../../../utils/icons";
 import { useDispatch } from "react-redux";
 import { toTrue } from "../../../../redux/slices/modalSlice";
 import { changeId, changeStatus } from "../../../../redux/slices/palasSlice";
