@@ -12,6 +12,7 @@ import react_testing_library from "./react_testing_library.png";
 import react_toastify from './react_toastify.png';
 import redux from './redux.png';
 import supertest from "./supertest.png";
+import vitest from "./vitest.png";
 import yup from "./yup.png";
 
 export {
@@ -29,6 +30,7 @@ export {
   react_toastify,
   redux,
   supertest,
+  vitest,
   yup
 };
 

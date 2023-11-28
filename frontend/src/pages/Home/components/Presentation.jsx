@@ -15,6 +15,7 @@ import {
   react_toastify,
   redux,
   supertest,
+  vitest,
   yup
 } from '../../../assets/icons/index'
 
@@ -54,7 +55,7 @@ export const Presentation = () => {
                 <img src={react_router_dom} width={25} alt="" />
                 <img src={react_toastify} width={25} alt="" />
                 <img src={yup} width={25} alt="" />
-                <img src={jest} width={25} alt="" />
+                <img src={vitest} width={25} alt="" />
                 <img src={react_testing_library} width={25} alt="" />
               </section>
             </article>
