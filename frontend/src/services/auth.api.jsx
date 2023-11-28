@@ -2,7 +2,7 @@ import axios from '../api/axios.js'
 
 const signUpService = async(user) => {
   const res = await axios
-    .post('http://localhost:5000/api/v1/auth/register', user)
+    .post('auth/register', user)
     .catch(err => console.log(err))
     
   return res
