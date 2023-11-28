@@ -7,7 +7,6 @@ export const register = async(req, res, next) => {
   const { body } = req
   
   try {
-    console.log(body)
     const searchedUser = await userExistsService(body)
     
     if(searchedUser) {
@@ -28,7 +27,7 @@ export const login = async(req, res, next) => {
 
   try {
     const existingUser = await userExistsService(body)
-    console.log(existingUser)
+    
     if(!existingUser) {
       return next(new CustomError('User not found. Signup please', 404))
     }
