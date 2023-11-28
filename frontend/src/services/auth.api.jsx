@@ -1,19 +1,28 @@
 import axios from '../api/axios.js'
 
 const signUpService = async(user) => {
-  const res = await axios
+  try {
+    const res = await axios
     .post('auth/register', user)
     .catch(err => console.log(err))
     
-  return res
+    return res
+  } catch (error) {
+    return error.message
+  }
+  
 }
 
 const loginService = async(email, password) => {
-  const { data } = await axios
+  try {
+    const { data } = await axios
     .post('/auth/login', { email, password })
     .catch(err => console.log(err))
 
-  return data
+    return data
+  } catch (error) {
+    return error.message
+  }
 }
 
 export {

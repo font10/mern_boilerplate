@@ -12,7 +12,6 @@ export const fetchPalas = createAsyncThunk("get/fetchPalas", async () => {
 
 export const addPala = createAsyncThunk("post/addNewPala", async ({newPala, token}) => {
   try {
-    console.log(token)
     const response = await addPalaService(newPala, token)
     return response
   } catch (error) {
